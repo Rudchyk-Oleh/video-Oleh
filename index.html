@@ -2,55 +2,42 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- PWA + iOS Support -->
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Video Player">
-<link rel="apple-touch-icon" href="logo.png">
-<link rel="manifest" href="manifest.json">
-
-  <title>Video Start</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="logo.png" />
+  <title>Video Player</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      height: 100%;
+      overflow: hidden;
     }
-    #start-btn {
-      font-size: 2rem;
-      padding: 1rem 2rem;
-      background: white;
-      border: none;
-      border-radius: 10px;
-    }
+
     video {
-      display: none;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: black;
     }
   </style>
 </head>
 <body>
-  <button id="start-btn">▶ Почати відео</button>
-  <video id="video" muted playsinline>
-    <source src="video1.mp4" type="video/mp4">
+
+  <video id="vid" autoplay muted playsinline controls>
+    <source src="oleh.mp4" type="video/mp4" />
     Ваш браузер не підтримує відео.
   </video>
 
   <script>
-    document.getElementById('start-btn').addEventListener('click', () => {
-      const btn = document.getElementById('start-btn');
-      const video = document.getElementById('video');
-      btn.style.display = 'none';
-      video.style.display = 'block';
-      video.play();
+    // Примусове відтворення (на випадок затримки)
+    const video = document.getElementById('vid');
+    video.addEventListener('canplay', () => {
+      video.play().catch(() => {});
     });
   </script>
+
 </body>
 </html>

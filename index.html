@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Player</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
+  <title>Video Start</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #start-btn {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      background: white;
+      border: none;
+      border-radius: 10px;
+    }
+    video {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
 </head>
-<body style="margin:0; background:#000;">
-  <video
-    src="video1.mp4"
-    autoplay
-    muted
-    playsinline
-    style="width:100vw; height:100vh; object-fit:cover;"
-  ></video>
+<body>
+  <button id="start-btn">▶ Почати відео</button>
+  <video id="video" muted playsinline>
+    <source src="video1.mp4" type="video/mp4">
+    Ваш браузер не підтримує відео.
+  </video>
 
   <script>
-    // В разі помилки — консоль покаже
-    const video = document.querySelector('video');
-    video.addEventListener('error', e => {
-      console.error('Video error:', e);
+    document.getElementById('start-btn').addEventListener('click', () => {
+      const btn = document.getElementById('start-btn');
+      const video = document.getElementById('video');
+      btn.style.display = 'none';
+      video.style.display = 'block';
+      video.play();
     });
   </script>
 </body>

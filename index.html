@@ -3,32 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Відео</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: black;
-      overflow: hidden;
-    }
-    video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: contain;
-      background-color: black;
-    }
-  </style>
+  <title>Video Player</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
 </head>
-<body>
-  <video id="video" autoplay muted playsinline controls>
-    <source src="oleh.mp4" type="video/mp4">
-    Ваш браузер не підтримує відео.
-  </video>
+<body style="margin:0; background:#000;">
+  <video
+    src="oleh.mp4"
+    autoplay
+    muted
+    playsinline
+    style="width:100vw; height:100vh; object-fit:cover;"
+  ></video>
+
   <script>
-    window.addEventListener('load', () => {
-      const video = document.getElementById('video');
-      video.play().catch(e => console.warn("Autoplay error:", e));
+    // В разі помилки — консоль покаже
+    const video = document.querySelector('video');
+    video.addEventListener('error', e => {
+      console.error('Video error:', e);
     });
   </script>
 </body>
